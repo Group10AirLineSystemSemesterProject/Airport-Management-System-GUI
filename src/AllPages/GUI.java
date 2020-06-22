@@ -23,7 +23,7 @@ public class GUI {
         panel.setLayout(null);
         panel.setBackground(Login_COLOR);
         JPasswordField passwordText =new JPasswordField();
-        ImageIcon icon = new ImageIcon("Pictures/login.jpg");
+        ImageIcon icon = new ImageIcon("src/Pictures/login.jpg");
         JLabel label = new JLabel(icon);
         label.setBounds(0, 0, 685, 400); // for example, you can use your own values
         panel.add(label);
@@ -97,7 +97,7 @@ public class GUI {
         panel.setLayout(null);
         panel.setBackground(Main);
 
-        Icon icon = new ImageIcon("Pictures/3.gif");
+        Icon icon = new ImageIcon("src/Pictures/3.gif");
         JLabel label = new JLabel(icon);
         label.setBounds(0, 200, 400, 200); // for example, you can use your own values
         panel.add(label);
