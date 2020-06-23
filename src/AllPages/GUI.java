@@ -1,26 +1,21 @@
 package AllPages;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.net.URL;
 
 public class GUI{
+
     public static final Color Main = new Color(188, 242, 252, 154);
     public static final Color Guest_COLOR = new Color(64, 68, 64, 154);
     public static final Color Login_COLOR = new Color(35, 131, 32, 10);
     public static final Color AirportAdminPage_COLOR = new Color(136, 136, 136, 255);
-
-    JFrame frame=new JFrame();
+    JFrame frame = new JFrame();
 
     public void LOGIN(){
 
         frame.setVisible(false);
         JFrame frame1=new JFrame();
         JPanel panel=new JPanel();
-        frame1.setSize(1200,700);
+        frame1.setSize(1920,1080);;
         frame1.setLocationRelativeTo(null);//set center
 
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -83,12 +78,12 @@ public class GUI{
         });
     }
 
-    public  void GUEST(){
+    public void GUEST(){
 
         frame.setVisible(false);
         JFrame frameGuest=new JFrame();
         JPanel panelGuest=new JPanel();
-        frameGuest.setSize(1200,700);
+        frameGuest.setSize(1920,1080);;
         frameGuest.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panelGuest.setBackground(Guest_COLOR);
         frameGuest.add(panelGuest);
@@ -120,7 +115,82 @@ public class GUI{
         //logo mouse click event
         LogoMouseListener logoMouseListener = new LogoMouseListener(frame1,panel);
         //***************************************************
-        frame1.setSize(1200,700);
+        frame1.setSize(1920,1080);;
+        frame1.setLocationRelativeTo(null);//set center
+        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame1.add(panel);
+        panel.setLayout(null);
+        panel.setBackground(AirportAdminPage_COLOR);
+
+        JLabel UserName=new JLabel("User Name");
+        UserName.setBounds(180,300,85,25);
+
+        panel.add(UserName);
+        JTextField UserNameText=new JTextField();
+        UserNameText.setBounds(300,300,160,25);
+        panel.add(UserNameText);
+
+        JLabel UserSureName=new JLabel("User SureName");
+        UserSureName.setBounds(180,325,115,25);
+        panel.add(UserSureName);
+        JTextField UserSureNameText=new JTextField();
+        UserSureNameText.setBounds(300,325,160,25);
+        panel.add(UserSureNameText);
+
+        JLabel UserID=new JLabel("User ID");
+        UserID.setBounds(180,350,80,25);
+        panel.add(UserID);
+        JTextField UserIDText=new JTextField();
+        UserIDText.setBounds(300,350,160,25);
+        panel.add(UserIDText);
+
+        JPasswordField passwordText =new JPasswordField();
+        JLabel Password=new JLabel("User Password");
+        Password.setBounds(180,375,115,25);
+        panel.add(Password);
+        passwordText.setBounds(300,375,160,25);
+        panel.add(passwordText);
+
+        JLabel UserType=new JLabel("User Type");
+        UserType.setBounds(180,400,80,25);
+        panel.add(UserType);
+
+        Object[] items = {"Airline Manager","Store Manager"};
+        JComboBox comboBox = new JComboBox(items);
+        comboBox.setBounds(300,400,161,25);
+        panel.add(comboBox);
+
+        JButton addUser=new JButton("Add");
+        addUser.setBounds(280,450,100,25);
+        panel.add(addUser);
+
+        JButton removeUser=new JButton("Remove");
+        removeUser.setBounds(390,450,100,25);
+        panel.add(removeUser);
+        frame1.setVisible(true);
+
+        ImageIcon icon = new ImageIcon("src/Pictures/admin.jpg");
+        JLabel label = new JLabel(icon);
+        label.setBounds(0, 0, 1200, 700); // for example, you can use your own values
+        panel.add(label);
+
+        addUser.addActionListener(e -> {// e -> lambda expression.
+        });
+        removeUser.addActionListener(e -> {// e -> lambda expression.
+        });
+
+    }
+
+    public void AirlineAdministrator(){
+
+        JFrame frame1=new JFrame();
+        JPanel panel=new JPanel();
+
+        //logo mouse click event
+        LogoMouseListener logoMouseListener = new LogoMouseListener(frame1,panel);
+        //***************************************************
+
+        frame1.setSize(1920,1080);
         frame1.setLocationRelativeTo(null);//set center
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame1.add(panel);
@@ -189,7 +259,7 @@ public class GUI{
     public GUI(){
 
         JFrame frame=new JFrame();
-        frame.setSize(1200,700);
+        frame.setSize(1920,1080);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);//set center
 
