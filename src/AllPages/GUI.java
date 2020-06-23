@@ -2,11 +2,15 @@ package AllPages;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.net.URL;
 
-public class GUI {
+public class GUI{
     public static final Color Main = new Color(188, 242, 252, 154);
     public static final Color Guest_COLOR = new Color(64, 68, 64, 154);
-    public static final Color Login_COLOR = new Color(38, 109, 166, 255);
+    public static final Color Login_COLOR = new Color(35, 131, 32, 10);
     public static final Color AirportAdminPage_COLOR = new Color(136, 136, 136, 255);
 
     JFrame frame=new JFrame();
@@ -24,11 +28,14 @@ public class GUI {
         panel.setLayout(null);
         panel.setBackground(Login_COLOR);
 
-        JPasswordField passwordText =new JPasswordField();
         ImageIcon icon = new ImageIcon("src/Pictures/login.jpg");
         JLabel label = new JLabel(icon);
         label.setBounds(0, 0, 685, 400); // for example, you can use your own values
         panel.add(label);
+
+        //logo mouse click event
+        LogoMouseListener logoMouseListener = new LogoMouseListener(frame1,panel);
+        //***************************************************
 
         JLabel UserID=new JLabel("UserID");
         UserID.setBounds(180,300,80,25);
@@ -37,6 +44,7 @@ public class GUI {
         UserIDText.setBounds(265,300,160,25);
         panel.add(UserIDText);
 
+        JPasswordField passwordText =new JPasswordField();
         JLabel Password=new JLabel("Password");
         Password.setBounds(180,325,80,25);
         panel.add(Password);
@@ -98,14 +106,20 @@ public class GUI {
             output.setBounds(180,120,200,25);
             panelGuest.add(output);
         });
+        //logo mouse click event
+        LogoMouseListener logoMouseListener = new LogoMouseListener(frameGuest,panelGuest);
+        //***************************************************
         frameGuest.setVisible(true);
     }
+
     public void AirportAdministrator(){
 
         //frame.setVisible(false);
         JFrame frame1=new JFrame();
         JPanel panel=new JPanel();
-
+        //logo mouse click event
+        LogoMouseListener logoMouseListener = new LogoMouseListener(frame1,panel);
+        //***************************************************
         frame1.setSize(1200,700);
         frame1.setLocationRelativeTo(null);//set center
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -169,7 +183,9 @@ public class GUI {
         });
         removeUser.addActionListener(e -> {// e -> lambda expression.
         });
+
     }
+
     public GUI(){
 
         JFrame frame=new JFrame();
@@ -199,5 +215,9 @@ public class GUI {
         Guest.setBounds(470,300,150,25);
         panel.add(Guest);
         Guest.addActionListener(e -> GUEST());//go to guest page.
+
+        //logo mouse click event
+        LogoMouseListener logoMouseListener = new LogoMouseListener(frame,panel);
+        //***************************************************
     }
 }
