@@ -1,6 +1,10 @@
-package AllPages;
+import Airport.Shop;
+import Airport.ShopManager;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GUI{
 
@@ -23,7 +27,7 @@ public class GUI{
         panel.setLayout(null);
         panel.setBackground(Login_COLOR);
 
-        ImageIcon icon = new ImageIcon("src/Pictures/login.jpg");
+        ImageIcon icon = new ImageIcon("login.jpg");
         JLabel label = new JLabel(icon);
         label.setBounds(0, 0, 685, 400); // for example, you can use your own values
         panel.add(label);
@@ -50,8 +54,8 @@ public class GUI{
         UserType.setBounds(180,350,80,25);
         panel.add(UserType);
 
-        Object[] items = {"Airport Administrator","Airline Manager","Store Manager","Airline Administrator"
-                        ,"Flight Manager","Airline Personnel","Ticketed Passenger","Guest"};
+        Object[] items = {"Airport Administrator","Store Manager","Airline Administrator"
+                ,"Flight Manager","Airline Personnel","Ticketed Passenger"};
         JComboBox comboBox = new JComboBox(items);
         comboBox.setBounds(265,350,161,25);
         panel.add(comboBox);
@@ -63,21 +67,103 @@ public class GUI{
 
         Login.addActionListener(e -> {// e -> lambda expression.
             if(UserIDText.getText().equals("ali") && passwordText.getText().equals("123") && comboBox.getSelectedItem().equals(items[0])){
-//                frame1.setVisible(false);
-//                JFrame TrueFrame=new JFrame();
-//                JPanel TruePanel=new JPanel();
-//                TrueFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//                TrueFrame.setSize(750,750);
-//                TrueFrame.add(TruePanel);
-//                JLabel text=new JLabel("TRUE");
-//                text.setBounds(0,0,200,25);
-//                TruePanel.add(text);
-//                TrueFrame.setVisible(true);
                 AirportAdministrator();
+            }
+            else if(UserIDText.getText().equals("alp")&&passwordText.getText().equals("456")&&comboBox.getSelectedItem().equals(items[1])){
+                    StoreManager();
             }
         });
     }
+    public void StoreManager(){
+        frame.setVisible(false);
+        JFrame frame1=new JFrame();
+        JPanel panel=new JPanel();
+        //logo mouse click event
+        LogoMouseListener logoMouseListener = new LogoMouseListener(frame1,panel);
+        //***************************************************
+        frame1.setSize(1920,1080);;
+        frame1.setLocationRelativeTo(null);//set center
+        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame1.add(panel);
+        panel.setLayout(null);
+        panel.setBackground(AirportAdminPage_COLOR);
 
+        ///////Name
+        JLabel UserID=new JLabel("Name");
+        UserID.setBounds(180,300,80,25);
+        panel.add(UserID);
+        JTextField name=new JTextField();
+        name.setBounds(280,300,160,25);
+        panel.add(name);
+        ///////ShopManager
+        JTextField ShopManagerTEXT=new JTextField();
+        ShopManagerTEXT.setBounds(280,330,160,25);
+        panel.add(ShopManagerTEXT);
+        frame1.setVisible(true);
+        JLabel ShopManagerLBL=new JLabel("Shop Manager");
+        ShopManagerLBL.setBounds(180,330,100,25);
+        panel.add(ShopManagerLBL);
+
+        /////////FEE
+        JTextField fee=new JTextField();
+        fee.setBounds(280,360,160,25);
+        panel.add(fee);
+        JLabel feeLBL=new JLabel("Fee");
+        feeLBL.setBounds(180,360,100,25);
+        panel.add(feeLBL);
+
+        ///////////ID
+        JTextField ID=new JTextField();
+        ID.setBounds(280,390,160,25);
+        panel.add(ID);
+        JLabel IDLBL=new JLabel("ID");
+        IDLBL.setBounds(180,390,100,25);
+        panel.add(IDLBL);
+
+
+        /////////BUTTONS
+        JButton addUser=new JButton("Add");
+        addUser.setBounds(280,450,100,25);
+        panel.add(addUser);
+
+        JButton removeUser=new JButton("Remove");
+        removeUser.setBounds(390,450,100,25);
+        panel.add(removeUser);
+
+
+
+        addUser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String str=ShopManagerTEXT.getText();
+                String words[]=str.split("-");
+                System.out.println(words[0]);
+                Double FEE=Double.parseDouble(words[4]);
+                System.out.println(FEE);
+                try {
+                    ShopManager SM=new ShopManager(words[0],words[1],words[2],words[3],FEE,null);
+                    int feeShop=Integer.parseInt(fee.getText());
+                    Shop shp=new Shop(UserID.getText(),SM,feeShop,ID.getText());
+                    //addtotheCollection Shop
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+
+            }
+        });
+        removeUser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String str=ShopManagerTEXT.getText();
+                String words[]=str.split("-");
+                System.out.println(words[0]);
+                Double FEE=Double.parseDouble(words[4]);
+                System.out.println(FEE);
+                //ShopManager SM=new ShopManager(words[0],words[1],words[2],words[3],FEE,null);
+            }
+        });
+
+    }
     public void GUEST(){
 
         frame.setVisible(false);
@@ -109,7 +195,7 @@ public class GUI{
 
     public void AirportAdministrator(){
 
-        //frame.setVisible(false);
+        frame.setVisible(false);
         JFrame frame1=new JFrame();
         JPanel panel=new JPanel();
         //logo mouse click event
@@ -169,7 +255,7 @@ public class GUI{
         panel.add(removeUser);
         frame1.setVisible(true);
 
-        ImageIcon icon = new ImageIcon("src/Pictures/admin.jpg");
+        ImageIcon icon = new ImageIcon("admin.jpg");
         JLabel label = new JLabel(icon);
         label.setBounds(0, 0, 1200, 700); // for example, you can use your own values
         panel.add(label);
@@ -180,85 +266,8 @@ public class GUI{
         });
 
     }
-
-    public void AirlineAdministrator(){
-
-        JFrame frame1=new JFrame();
-        JPanel panel=new JPanel();
-
-        //logo mouse click event
-        LogoMouseListener logoMouseListener = new LogoMouseListener(frame1,panel);
-        //***************************************************
-
-        frame1.setSize(1920,1080);
-        frame1.setLocationRelativeTo(null);//set center
-        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame1.add(panel);
-        panel.setLayout(null);
-        panel.setBackground(AirportAdminPage_COLOR);
-
-        JLabel UserName=new JLabel("User Name");
-        UserName.setBounds(180,300,85,25);
-
-        panel.add(UserName);
-        JTextField UserNameText=new JTextField();
-        UserNameText.setBounds(300,300,160,25);
-        panel.add(UserNameText);
-
-        JLabel UserSureName=new JLabel("User SureName");
-        UserSureName.setBounds(180,325,115,25);
-        panel.add(UserSureName);
-        JTextField UserSureNameText=new JTextField();
-        UserSureNameText.setBounds(300,325,160,25);
-        panel.add(UserSureNameText);
-
-        JLabel UserID=new JLabel("User ID");
-        UserID.setBounds(180,350,80,25);
-        panel.add(UserID);
-        JTextField UserIDText=new JTextField();
-        UserIDText.setBounds(300,350,160,25);
-        panel.add(UserIDText);
-
-        JPasswordField passwordText =new JPasswordField();
-        JLabel Password=new JLabel("User Password");
-        Password.setBounds(180,375,115,25);
-        panel.add(Password);
-        passwordText.setBounds(300,375,160,25);
-        panel.add(passwordText);
-
-        JLabel UserType=new JLabel("User Type");
-        UserType.setBounds(180,400,80,25);
-        panel.add(UserType);
-
-        Object[] items = {"Airline Manager","Store Manager"};
-        JComboBox comboBox = new JComboBox(items);
-        comboBox.setBounds(300,400,161,25);
-        panel.add(comboBox);
-
-        JButton addUser=new JButton("Add");
-        addUser.setBounds(280,450,100,25);
-        panel.add(addUser);
-
-        JButton removeUser=new JButton("Remove");
-        removeUser.setBounds(390,450,100,25);
-        panel.add(removeUser);
-        frame1.setVisible(true);
-
-        ImageIcon icon = new ImageIcon("src/Pictures/admin.jpg");
-        JLabel label = new JLabel(icon);
-        label.setBounds(0, 0, 1200, 700); // for example, you can use your own values
-        panel.add(label);
-
-        addUser.addActionListener(e -> {// e -> lambda expression.
-        });
-        removeUser.addActionListener(e -> {// e -> lambda expression.
-        });
-
-    }
-
     public GUI(){
 
-        JFrame frame=new JFrame();
         frame.setSize(1920,1080);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);//set center
@@ -268,7 +277,7 @@ public class GUI{
         panel.setLayout(null);
         panel.setBackground(Main);
 
-        Icon icon = new ImageIcon("src/Pictures/3.gif");
+        Icon icon = new ImageIcon("3.gif");
         JLabel label = new JLabel(icon);
         label.setBounds(0, 200, 400, 200); // for example, you can use your own values
         panel.add(label);
@@ -279,12 +288,25 @@ public class GUI{
 
         frame.setVisible(true);
 
-        Login.addActionListener( e -> LOGIN());//go to login page
+        Login.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                LOGIN();
+            }
+        });//go to login page
 
         JButton Guest=new JButton("GUEST");
         Guest.setBounds(470,300,150,25);
         panel.add(Guest);
-        Guest.addActionListener(e -> GUEST());//go to guest page.
+        Guest.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                GUEST();
+
+            }
+        });//go to guest page.
 
         //logo mouse click event
         LogoMouseListener logoMouseListener = new LogoMouseListener(frame,panel);
