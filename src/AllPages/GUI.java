@@ -1,15 +1,30 @@
 package AllPages;
+import javax.naming.Name;
 import javax.swing.*;
+import javax.swing.text.JTextComponent;
 import java.awt.*;
+import Airport.AirportAdmin;
+import Airport.AirportSystemStorage;
 
 public class GUI{
+
+    public static final String AirportName = "Data Airport";
+    public static final String portAdminName = "felix";
+    public static final String portAdminSurname = "morgan";
+    public static final String portAdminSSN = "123";
+    public static final String portAdminPassword = "123";
 
     public static final Color Main = new Color(188, 242, 252, 154);
     public static final Color Guest_COLOR = new Color(64, 68, 64, 154);
     public static final Color Login_COLOR = new Color(35, 131, 32, 10);
-    public static final Color AirportAdminPage_COLOR = new Color(136, 136, 136, 255);
-    JFrame frame = new JFrame();
+    public static final Color AirportAdminPage_COLOR = new Color(255, 255, 255, 255);
+    public static final Color AirportAdminTitle_COLOR = new Color(222, 201, 27, 255);
+    public static final Color Landing_COLOR = new Color(126, 11, 11, 65);
 
+
+    JFrame frame = new JFrame();
+    AirportSystemStorage portStorage = new AirportSystemStorage();
+    AirportAdmin portAdmin = new AirportAdmin(portAdminName,portAdminSurname,portAdminSSN,portAdminPassword,portStorage);
     public void LOGIN(){
 
         frame.setVisible(false);
@@ -19,62 +34,100 @@ public class GUI{
         frame1.setLocationRelativeTo(null);//set center
 
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame1.add(panel);
         panel.setLayout(null);
         panel.setBackground(Login_COLOR);
 
-        ImageIcon icon = new ImageIcon("src/Pictures/login.jpg");
-        JLabel label = new JLabel(icon);
-        label.setBounds(0, 0, 685, 400); // for example, you can use your own values
-        panel.add(label);
+        JLabel a=new JLabel("label");
+        a.setText("LOGIN TO YOUR ACCOUNT :)");
+        a.setForeground(AirportAdminTitle_COLOR);
+        a.setBounds(530,130,1000,55);
+        Font font = new Font("arial", Font.BOLD, 50);
+        a.setFont(font);
+        panel.add(a);
+
 
         //logo mouse click event
         LogoMouseListener logoMouseListener = new LogoMouseListener(frame1,panel);
         //***************************************************
 
-        JLabel UserID=new JLabel("UserID");
-        UserID.setBounds(180,300,80,25);
-        panel.add(UserID);
-        JTextField UserIDText=new JTextField();
-        UserIDText.setBounds(265,300,160,25);
-        panel.add(UserIDText);
+        JLabel Name = new JLabel("Name");
+        Name.setBounds(180,300,80,25);
+        Name.setForeground(AirportAdminTitle_COLOR);
+        panel.add(Name);
+        JTextField nameText=new JTextField();
+        nameText.setBounds(265,300,160,25);
+        panel.add(nameText);
 
-        JPasswordField passwordText =new JPasswordField();
-        JLabel Password=new JLabel("Password");
-        Password.setBounds(180,325,80,25);
-        panel.add(Password);
-        passwordText.setBounds(265,325,160,25);
+        JLabel SureName =new JLabel("Sure Name");
+        SureName.setBounds(180,330,80,25);
+        SureName.setForeground(AirportAdminTitle_COLOR);
+        panel.add(SureName);
+        JTextField sureNameText=new JTextField();
+        sureNameText.setBounds(265,330,160,25);
+        panel.add(sureNameText);
+
+        JLabel SSN =new JLabel("SSN/UAID");
+        SSN.setBounds(180,360,80,25);
+        SSN.setForeground(AirportAdminTitle_COLOR);
+        panel.add(SSN);
+        JPasswordField ssnText  =new JPasswordField();
+        ssnText.setBounds(265,360,160,25);
+        panel.add(ssnText);
+
+        JLabel PASSWORD = new JLabel("Password");
+        PASSWORD.setBounds(180,390,80,25);
+        PASSWORD.setForeground(AirportAdminTitle_COLOR);
+        panel.add(PASSWORD);
+        JPasswordField passwordText = new JPasswordField();
+        passwordText.setBounds(265,390,160,25);
         panel.add(passwordText);
 
-        JLabel UserType=new JLabel("UserType");
-        UserType.setBounds(180,350,80,25);
+        JLabel UserType = new JLabel("User Type");
+        UserType.setBounds(180,420,80,25);
+        UserType.setForeground(AirportAdminTitle_COLOR);
         panel.add(UserType);
 
-        Object[] items = {"Airport Administrator","Airline Manager","Store Manager","Airline Administrator"
-                        ,"Flight Manager","Airline Personnel","Ticketed Passenger","Guest"};
+        Object[] items = {"Airport Administrator","Airline Manager","Store Manager"
+                        ,"Flight Manager","Airline Personnel","Ticketed Passenger"};
         JComboBox comboBox = new JComboBox(items);
-        comboBox.setBounds(265,350,161,25);
+        comboBox.setBounds(265,420,161,25);
         panel.add(comboBox);
 
         JButton Login=new JButton("LOGIN");
-        Login.setBounds(300,390,80,25);
+        Login.setBounds(300,470,80,25);
         panel.add(Login);
+
+
+        ImageIcon icon = new ImageIcon("src/Pictures/loginpage.jpg");
+        JLabel label = new JLabel(icon);
+        label.setBounds(0, 0, 1920, 1080); // for example, you can use your own values
+        panel.add(label);
+
         frame1.setVisible(true);
 
         Login.addActionListener(e -> {// e -> lambda expression.
-            if(UserIDText.getText().equals("ali") && passwordText.getText().equals("123") && comboBox.getSelectedItem().equals(items[0])){
-//                frame1.setVisible(false);
-//                JFrame TrueFrame=new JFrame();
-//                JPanel TruePanel=new JPanel();
-//                TrueFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//                TrueFrame.setSize(750,750);
-//                TrueFrame.add(TruePanel);
-//                JLabel text=new JLabel("TRUE");
-//                text.setBounds(0,0,200,25);
-//                TruePanel.add(text);
-//                TrueFrame.setVisible(true);
-                AirportAdministrator();
-            }
+            AirportAdministrator();
+
+//            if(comboBox.getSelectedItem().toString().equals(items[0])){// airport admin
+//                String ssn = new String(ssnText.getPassword());
+//                String password = new String(passwordText.getPassword());
+//                if (nameText.getText().equals(portAdmin.getName()) && sureNameText.getText().equals(portAdmin.getSurname())
+//                        && ssn.equals(portAdmin.getSSN()) && password.equals(portAdmin.getPassword())){
+//                    AirportAdministrator();
+//                }else{
+//                    JOptionPane.showMessageDialog(this.frame,"Incorrect User Info :(");
+//                }
+//            }
+//            else if (comboBox.getSelectedItem().toString().equals(items[1])){//if airline admin
+//            }
+//            else if (comboBox.getSelectedItem().toString().equals(items[2])){
+//            }
+//            else if (comboBox.getSelectedItem().toString().equals(items[3])){
+//            }
+//            else if (comboBox.getSelectedItem().toString().equals(items[4])){
+//            }
+//            else if (comboBox.getSelectedItem().toString().equals(items[5])){
+//            }
         });
     }
 
@@ -101,6 +154,7 @@ public class GUI{
             output.setBounds(180,120,200,25);
             panelGuest.add(output);
         });
+
         //logo mouse click event
         LogoMouseListener logoMouseListener = new LogoMouseListener(frameGuest,panelGuest);
         //***************************************************
@@ -109,12 +163,14 @@ public class GUI{
 
     public void AirportAdministrator(){
 
-        //frame.setVisible(false);
+        frame.setVisible(false);
         JFrame frame1=new JFrame();
         JPanel panel=new JPanel();
+
         //logo mouse click event
-        LogoMouseListener logoMouseListener = new LogoMouseListener(frame1,panel);
+        LogoMouseListener logoMouseListener = new LogoMouseListener(frame,panel);
         //***************************************************
+
         frame1.setSize(1920,1080);;
         frame1.setLocationRelativeTo(null);//set center
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -122,15 +178,26 @@ public class GUI{
         panel.setLayout(null);
         panel.setBackground(AirportAdminPage_COLOR);
 
-        JLabel UserName=new JLabel("User Name");
-        UserName.setBounds(180,300,85,25);
 
+        JLabel a=new JLabel("label");
+        a.setText("AIRPORT ADMINISTRATION");
+        a.setForeground(AirportAdminTitle_COLOR);
+        a.setBounds(530,130,1000,55);
+        Font font = new Font("arial", Font.BOLD, 50);
+        a.setFont(font);
+        panel.add(a);
+
+
+        JLabel UserName=new JLabel("User Name");
+        UserName.setForeground(AirportAdminPage_COLOR);
+        UserName.setBounds(180,300,85,25);
         panel.add(UserName);
         JTextField UserNameText=new JTextField();
         UserNameText.setBounds(300,300,160,25);
         panel.add(UserNameText);
 
         JLabel UserSureName=new JLabel("User SureName");
+        UserSureName.setForeground(AirportAdminPage_COLOR);
         UserSureName.setBounds(180,325,115,25);
         panel.add(UserSureName);
         JTextField UserSureNameText=new JTextField();
@@ -138,6 +205,7 @@ public class GUI{
         panel.add(UserSureNameText);
 
         JLabel UserID=new JLabel("User ID");
+        UserID.setForeground(AirportAdminPage_COLOR);
         UserID.setBounds(180,350,80,25);
         panel.add(UserID);
         JTextField UserIDText=new JTextField();
@@ -146,12 +214,15 @@ public class GUI{
 
         JPasswordField passwordText =new JPasswordField();
         JLabel Password=new JLabel("User Password");
+        Password.setForeground(AirportAdminPage_COLOR);
+
         Password.setBounds(180,375,115,25);
         panel.add(Password);
         passwordText.setBounds(300,375,160,25);
         panel.add(passwordText);
 
         JLabel UserType=new JLabel("User Type");
+        UserType.setForeground(AirportAdminPage_COLOR);
         UserType.setBounds(180,400,80,25);
         panel.add(UserType);
 
@@ -167,52 +238,221 @@ public class GUI{
         JButton removeUser=new JButton("Remove");
         removeUser.setBounds(390,450,100,25);
         panel.add(removeUser);
-        frame1.setVisible(true);
 
-        ImageIcon icon = new ImageIcon("src/Pictures/admin.jpg");
+
+        JButton adminInfo=new JButton("Display Personnel Info");
+        adminInfo.setBounds(1700,5,200,40);
+        panel.add(adminInfo);
+        Font t = new Font("arial", Font.BOLD, 13);
+        adminInfo.setFont(t);
+        panel.add(adminInfo);
+
+        JButton airline_settings=new JButton("Airline Settings");
+        airline_settings.setBounds(1700,50,200,40);
+        panel.add(airline_settings);
+        Font airlineT = new Font("arial", Font.BOLD, 13);
+        airline_settings.setFont(airlineT);
+        panel.add(airline_settings);
+
+        JButton shops_settings=new JButton("Shops Settings");
+        shops_settings.setBounds(1700,100,200,40);
+        panel.add(shops_settings);
+        Font shopsT = new Font("arial", Font.BOLD, 13);
+        shops_settings.setFont(shopsT);
+        panel.add(shops_settings);
+
+        JButton personnel_setting=new JButton("Airport Personnel Setting");
+        personnel_setting.setBounds(1700,150,200,40);
+        panel.add(personnel_setting);
+        Font personalT = new Font("arial", Font.BOLD, 13);
+        personnel_setting.setFont(personalT);
+        panel.add(personnel_setting);
+
+        ImageIcon icon = new ImageIcon("src/Pictures/airportadminis.jpg");
         JLabel label = new JLabel(icon);
-        label.setBounds(0, 0, 1200, 700); // for example, you can use your own values
+        label.setBounds(0, 0, 1920, 1080); // for example, you can use your own values
         panel.add(label);
+        frame1.setVisible(true);
 
         addUser.addActionListener(e -> {// e -> lambda expression.
         });
         removeUser.addActionListener(e -> {// e -> lambda expression.
         });
+        adminInfo.addActionListener(e ->{
+            AirportAdministratorPersonnelInfo();
+        });
+        airline_settings.addActionListener(e ->{
+            AirportAdminAirlinesSetting();
+        });
 
     }
 
-    public void AirlineAdministrator(){
+    public void AirportAdministratorPersonnelInfo(){
+
+        frame.setVisible(false);
 
         JFrame frame1=new JFrame();
         JPanel panel=new JPanel();
 
         //logo mouse click event
-        LogoMouseListener logoMouseListener = new LogoMouseListener(frame1,panel);
+        LogoMouseListener logoMouseListener = new LogoMouseListener(frame,panel);
         //***************************************************
 
-        frame1.setSize(1920,1080);
+        frame1.setSize(1920,1080);;
         frame1.setLocationRelativeTo(null);//set center
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame1.add(panel);
         panel.setLayout(null);
         panel.setBackground(AirportAdminPage_COLOR);
 
-        JLabel UserName=new JLabel("User Name");
-        UserName.setBounds(180,300,85,25);
 
+        JLabel a=new JLabel("admin");
+        a.setText("PERSONNEL INFORMATION");
+        a.setForeground(AirportAdminTitle_COLOR);
+        a.setBounds(530,130,1000,55);
+        Font font = new Font("arial", Font.BOLD, 50);
+        a.setFont(font);
+        panel.add(a);
+
+        JLabel name=new JLabel("name");
+        name.setText("Name : " + portAdmin.getName());
+        name.setForeground(AirportAdminPage_COLOR);
+        name.setBounds(530,190,1000,55);
+        Font nameFont = new Font("arial", Font.BOLD, 20);
+        name.setFont(nameFont);
+        panel.add(name);
+
+        JLabel sureName=new JLabel("sureName");
+        sureName.setText("SureName : "+portAdmin.getSurname());
+        sureName.setForeground(AirportAdminPage_COLOR);
+        sureName.setBounds(530,250,1000,55);
+        Font sureNameFont = new Font("arial", Font.BOLD, 20);
+        sureName.setFont(sureNameFont);
+        panel.add(sureName);
+
+        JLabel ssn=new JLabel("ssn");
+        ssn.setText("SSN : "+portAdmin.getSSN());
+        ssn.setForeground(AirportAdminPage_COLOR);
+        ssn.setBounds(530,310,1000,55);
+        Font ssnFont = new Font("arial", Font.BOLD, 20);
+        ssn.setFont(ssnFont);
+        panel.add(ssn);
+
+        JLabel pass=new JLabel("pass");
+        pass.setText("Password : " + portAdmin.getPassword());
+        pass.setForeground(AirportAdminPage_COLOR);
+        pass.setBounds(530,370,1000,55);
+        Font passFont = new Font("arial", Font.BOLD, 20);
+        pass.setFont(passFont);
+        panel.add(pass);
+
+
+        JButton adminInfo=new JButton("Hide Personnel Info");
+        adminInfo.setBounds(1700,5,200,40);
+        panel.add(adminInfo);
+        Font t = new Font("arial", Font.BOLD, 13);
+        adminInfo.setFont(t);
+        panel.add(adminInfo);
+
+
+        JLabel SSN=new JLabel("New SSN ");
+        SSN.setForeground(AirportAdminPage_COLOR);
+        SSN.setBounds(180,350,80,25);
+        panel.add(SSN);
+        JTextField UserIDText=new JTextField();
+        UserIDText.setBounds(300,350,160,25);
+        panel.add(UserIDText);
+
+        JPasswordField passwordText =new JPasswordField();
+        JLabel Password=new JLabel("New Password");
+        Password.setForeground(AirportAdminPage_COLOR);
+
+        Password.setBounds(180,375,115,25);
+        panel.add(Password);
+        passwordText.setBounds(300,375,160,25);
+        panel.add(passwordText);
+
+
+        JButton addUser=new JButton("Reset");
+        addUser.setBounds(330,410,100,25);
+        panel.add(addUser);
+
+        ImageIcon icon = new ImageIcon("src/Pictures/adminInfoPageImage.jpg");
+        JLabel label = new JLabel(icon);
+        label.setBounds(0, 0, 1920, 1080); // for example, you can use your own values
+        panel.add(label);
+        frame1.setVisible(true);
+
+        adminInfo.addActionListener(e ->{
+            AirportAdministrator();
+        });
+        addUser.addActionListener(e->{
+            boolean isPassed = true;
+            try {
+                portAdmin.setSSN(UserIDText.getText());
+            } catch (Exception exception) {
+                JOptionPane.showMessageDialog(this.frame,"Oops Can't Reset :(");
+                isPassed = false;
+                exception.printStackTrace();
+            }
+            try {
+                portAdmin.setPassword(passwordText.getPassword().toString());
+            } catch (Exception exception) {
+                JOptionPane.showMessageDialog(this.frame,"Oops Can't Reset :(");
+                isPassed = false;
+                exception.printStackTrace();
+            }
+            if (isPassed) {
+                JOptionPane.showMessageDialog(this.frame, "Airport Admin's SSN has been reset Successfully :)");
+            }
+        });
+    }
+
+    public void AirportAdminAirlinesSetting(){
+
+        frame.setVisible(false);
+        JFrame frame1=new JFrame();
+        JPanel panel=new JPanel();
+
+        //logo mouse click event
+        LogoMouseListener logoMouseListener = new LogoMouseListener(frame,panel);
+        //***************************************************
+
+        frame1.setSize(1920,1080);;
+        frame1.setLocationRelativeTo(null);//set center
+        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame1.add(panel);
+        panel.setLayout(null);
+        panel.setBackground(AirportAdminPage_COLOR);
+
+
+        JLabel a=new JLabel("label");
+        a.setText("AIRLINE SETTINGS");
+        a.setForeground(AirportAdminTitle_COLOR);
+        a.setBounds(530,130,1000,55);
+        Font font = new Font("arial", Font.BOLD, 50);
+        a.setFont(font);
+        panel.add(a);
+
+
+        JLabel UserName=new JLabel("User Name");
+        UserName.setForeground(AirportAdminPage_COLOR);
+        UserName.setBounds(180,300,85,25);
         panel.add(UserName);
         JTextField UserNameText=new JTextField();
         UserNameText.setBounds(300,300,160,25);
         panel.add(UserNameText);
 
         JLabel UserSureName=new JLabel("User SureName");
+        UserSureName.setForeground(AirportAdminPage_COLOR);
         UserSureName.setBounds(180,325,115,25);
         panel.add(UserSureName);
         JTextField UserSureNameText=new JTextField();
         UserSureNameText.setBounds(300,325,160,25);
         panel.add(UserSureNameText);
 
-        JLabel UserID=new JLabel("User ID");
+        JLabel UserID=new JLabel("UAID_KEY");
+        UserID.setForeground(AirportAdminPage_COLOR);
         UserID.setBounds(180,350,80,25);
         panel.add(UserID);
         JTextField UserIDText=new JTextField();
@@ -220,13 +460,16 @@ public class GUI{
         panel.add(UserIDText);
 
         JPasswordField passwordText =new JPasswordField();
-        JLabel Password=new JLabel("User Password");
+        JLabel Password=new JLabel("Password");
+        Password.setForeground(AirportAdminPage_COLOR);
+
         Password.setBounds(180,375,115,25);
         panel.add(Password);
         passwordText.setBounds(300,375,160,25);
         panel.add(passwordText);
 
         JLabel UserType=new JLabel("User Type");
+        UserType.setForeground(AirportAdminPage_COLOR);
         UserType.setBounds(180,400,80,25);
         panel.add(UserType);
 
@@ -242,23 +485,46 @@ public class GUI{
         JButton removeUser=new JButton("Remove");
         removeUser.setBounds(390,450,100,25);
         panel.add(removeUser);
-        frame1.setVisible(true);
 
-        ImageIcon icon = new ImageIcon("src/Pictures/admin.jpg");
+
+        JButton adminInfo=new JButton("Go Prev Page");
+        adminInfo.setBounds(1700,5,200,40);
+        panel.add(adminInfo);
+        Font t = new Font("arial", Font.BOLD, 13);
+        adminInfo.setFont(t);
+        panel.add(adminInfo);
+
+        JButton airline_settings=new JButton("List Airlines");
+        airline_settings.setBounds(1700,50,200,40);
+        panel.add(airline_settings);
+        Font airlineT = new Font("arial", Font.BOLD, 13);
+        airline_settings.setFont(airlineT);
+        panel.add(airline_settings);
+
+        ImageIcon icon = new ImageIcon("src/Pictures/airlinepage.jpg");
         JLabel label = new JLabel(icon);
-        label.setBounds(0, 0, 1200, 700); // for example, you can use your own values
+        label.setBounds(0, 0, 1920, 1080); // for example, you can use your own values
         panel.add(label);
-
+        frame1.setVisible(true);
+        
         addUser.addActionListener(e -> {// e -> lambda expression.
         });
         removeUser.addActionListener(e -> {// e -> lambda expression.
         });
+        adminInfo.addActionListener(e ->{
+            AirportAdministrator();
+        });
+        airline_settings.addActionListener(e ->{ });
 
     }
 
     public GUI(){
 
-        JFrame frame=new JFrame();
+        try{
+        //Airport airport = new Airport(AirportName);
+        AirportSystemStorage portStorage = new AirportSystemStorage();
+        AirportAdmin portAdmin = new AirportAdmin(portAdminName,portAdminSurname,portAdminSSN,portAdminPassword,portStorage);
+
         frame.setSize(1920,1080);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);//set center
@@ -267,6 +533,15 @@ public class GUI{
         frame.add(panel);
         panel.setLayout(null);
         panel.setBackground(Main);
+
+        JLabel a=new JLabel("label");
+        a.setText("WELCOME TO DATA AIRPORT");
+        a.setForeground(Landing_COLOR);
+        a.setBounds(530,130,1000,55);
+        Font font = new Font("Arial", Font.BOLD, 50);
+        a.setFont(font);
+        panel.add(a);
+
 
         Icon icon = new ImageIcon("src/Pictures/3.gif");
         JLabel label = new JLabel(icon);
@@ -289,5 +564,9 @@ public class GUI{
         //logo mouse click event
         LogoMouseListener logoMouseListener = new LogoMouseListener(frame,panel);
         //***************************************************
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 }

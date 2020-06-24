@@ -12,6 +12,7 @@ class LogoMouseListener extends JFrame{
         label.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e){
+                frame.setVisible(false);
                 GUI homePage = new GUI();
             }
         });
