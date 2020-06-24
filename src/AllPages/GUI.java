@@ -110,29 +110,28 @@ public class GUI{
         frame1.setVisible(true);
 
         Login.addActionListener(e -> {// e -> lambda expression.
-            AirportAdministrator();
+            if(comboBox.getSelectedItem().toString().equals(items[0])){// airport admin
+                String ssn = new String(ssnText.getPassword());
+                String password = new String(passwordText.getPassword());
+                if (nameText.getText().equals(portAdmin.getName()) && sureNameText.getText().equals(portAdmin.getSurname())
+                        && ssn.equals(portAdmin.getSSN()) && password.equals(portAdmin.getPassword())){
+                    AirportAdministrator();
+                }else{
+                    JOptionPane.showMessageDialog(this.frame,"Incorrect User Info :(");
+                }
+            }
+            else if (comboBox.getSelectedItem().toString().equals(items[1])){//if airline admin
+            }
+            else if (comboBox.getSelectedItem().toString().equals(items[2])){
 
-//            if(comboBox.getSelectedItem().toString().equals(items[0])){// airport admin
-//                String ssn = new String(ssnText.getPassword());
-//                String password = new String(passwordText.getPassword());
-//                if (nameText.getText().equals(portAdmin.getName()) && sureNameText.getText().equals(portAdmin.getSurname())
-//                        && ssn.equals(portAdmin.getSSN()) && password.equals(portAdmin.getPassword())){
-//                    AirportAdministrator();
-//                }else{
-//                    JOptionPane.showMessageDialog(this.frame,"Incorrect User Info :(");
-//                }
-//            }
-//            else if (comboBox.getSelectedItem().toString().equals(items[1])){//if airline admin
-//            }
-//            else if (comboBox.getSelectedItem().toString().equals(items[2])){
-                //StoreManager();
-//            }
-//            else if (comboBox.getSelectedItem().toString().equals(items[3])){
-//            }
-//            else if (comboBox.getSelectedItem().toString().equals(items[4])){
-//            }
-//            else if (comboBox.getSelectedItem().toString().equals(items[5])){
-//            }
+                StoreManager();
+            }
+            else if (comboBox.getSelectedItem().toString().equals(items[3])){
+            }
+            else if (comboBox.getSelectedItem().toString().equals(items[4])){
+            }
+            else if (comboBox.getSelectedItem().toString().equals(items[5])){
+            }
         });
     }
     public void StoreManager(){
