@@ -153,6 +153,10 @@ public class AirportAdmin extends Person implements UserInterface, AirportAdminI
         airportSystemStorage.ways.insertEdge(e);
     }
 
+    public AirportSystemStorage getAirportSystemStorage() {
+        return airportSystemStorage;
+    }
+
     @Override
     public String getSSN() {
         return SSN;
