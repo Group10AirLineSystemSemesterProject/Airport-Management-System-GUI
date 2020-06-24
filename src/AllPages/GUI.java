@@ -1,10 +1,21 @@
+<<<<<<< HEAD
 package AllPages;
 import javax.naming.Name;
+=======
+import Airport.Shop;
+import Airport.ShopManager;
+
+>>>>>>> 61a8f4b6d6260e6e55949a6ccd5fbaf215d5e15a
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
+<<<<<<< HEAD
 import Airport.AirportAdmin;
 import Airport.AirportSystemStorage;
+=======
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+>>>>>>> 61a8f4b6d6260e6e55949a6ccd5fbaf215d5e15a
 
 public class GUI{
 
@@ -37,6 +48,7 @@ public class GUI{
         panel.setLayout(null);
         panel.setBackground(Login_COLOR);
 
+<<<<<<< HEAD
         JLabel a=new JLabel("label");
         a.setText("LOGIN TO YOUR ACCOUNT :)");
         a.setForeground(AirportAdminTitle_COLOR);
@@ -45,6 +57,12 @@ public class GUI{
         a.setFont(font);
         panel.add(a);
 
+=======
+        ImageIcon icon = new ImageIcon("login.jpg");
+        JLabel label = new JLabel(icon);
+        label.setBounds(0, 0, 685, 400); // for example, you can use your own values
+        panel.add(label);
+>>>>>>> 61a8f4b6d6260e6e55949a6ccd5fbaf215d5e15a
 
         //logo mouse click event
         LogoMouseListener logoMouseListener = new LogoMouseListener(frame1,panel);
@@ -87,8 +105,13 @@ public class GUI{
         UserType.setForeground(AirportAdminTitle_COLOR);
         panel.add(UserType);
 
+<<<<<<< HEAD
         Object[] items = {"Airport Administrator","Airline Manager","Store Manager"
                         ,"Flight Manager","Airline Personnel","Ticketed Passenger"};
+=======
+        Object[] items = {"Airport Administrator","Store Manager","Airline Administrator"
+                ,"Flight Manager","Airline Personnel","Ticketed Passenger"};
+>>>>>>> 61a8f4b6d6260e6e55949a6ccd5fbaf215d5e15a
         JComboBox comboBox = new JComboBox(items);
         comboBox.setBounds(265,420,161,25);
         panel.add(comboBox);
@@ -106,6 +129,7 @@ public class GUI{
         frame1.setVisible(true);
 
         Login.addActionListener(e -> {// e -> lambda expression.
+<<<<<<< HEAD
             AirportAdministrator();
 
 //            if(comboBox.getSelectedItem().toString().equals(items[0])){// airport admin
@@ -128,9 +152,106 @@ public class GUI{
 //            }
 //            else if (comboBox.getSelectedItem().toString().equals(items[5])){
 //            }
+=======
+            if(UserIDText.getText().equals("ali") && passwordText.getText().equals("123") && comboBox.getSelectedItem().equals(items[0])){
+                AirportAdministrator();
+            }
+            else if(UserIDText.getText().equals("alp")&&passwordText.getText().equals("456")&&comboBox.getSelectedItem().equals(items[1])){
+                    StoreManager();
+            }
+>>>>>>> 61a8f4b6d6260e6e55949a6ccd5fbaf215d5e15a
         });
     }
+    public void StoreManager(){
+        frame.setVisible(false);
+        JFrame frame1=new JFrame();
+        JPanel panel=new JPanel();
+        //logo mouse click event
+        LogoMouseListener logoMouseListener = new LogoMouseListener(frame1,panel);
+        //***************************************************
+        frame1.setSize(1920,1080);;
+        frame1.setLocationRelativeTo(null);//set center
+        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame1.add(panel);
+        panel.setLayout(null);
+        panel.setBackground(AirportAdminPage_COLOR);
 
+        ///////Name
+        JLabel UserID=new JLabel("Name");
+        UserID.setBounds(180,300,80,25);
+        panel.add(UserID);
+        JTextField name=new JTextField();
+        name.setBounds(280,300,160,25);
+        panel.add(name);
+        ///////ShopManager
+        JTextField ShopManagerTEXT=new JTextField();
+        ShopManagerTEXT.setBounds(280,330,160,25);
+        panel.add(ShopManagerTEXT);
+        frame1.setVisible(true);
+        JLabel ShopManagerLBL=new JLabel("Shop Manager");
+        ShopManagerLBL.setBounds(180,330,100,25);
+        panel.add(ShopManagerLBL);
+
+        /////////FEE
+        JTextField fee=new JTextField();
+        fee.setBounds(280,360,160,25);
+        panel.add(fee);
+        JLabel feeLBL=new JLabel("Fee");
+        feeLBL.setBounds(180,360,100,25);
+        panel.add(feeLBL);
+
+        ///////////ID
+        JTextField ID=new JTextField();
+        ID.setBounds(280,390,160,25);
+        panel.add(ID);
+        JLabel IDLBL=new JLabel("ID");
+        IDLBL.setBounds(180,390,100,25);
+        panel.add(IDLBL);
+
+
+        /////////BUTTONS
+        JButton addUser=new JButton("Add");
+        addUser.setBounds(280,450,100,25);
+        panel.add(addUser);
+
+        JButton removeUser=new JButton("Remove");
+        removeUser.setBounds(390,450,100,25);
+        panel.add(removeUser);
+
+
+
+        addUser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String str=ShopManagerTEXT.getText();
+                String words[]=str.split("-");
+                System.out.println(words[0]);
+                Double FEE=Double.parseDouble(words[4]);
+                System.out.println(FEE);
+                try {
+                    ShopManager SM=new ShopManager(words[0],words[1],words[2],words[3],FEE,null);
+                    int feeShop=Integer.parseInt(fee.getText());
+                    Shop shp=new Shop(UserID.getText(),SM,feeShop,ID.getText());
+                    //addtotheCollection Shop
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+
+            }
+        });
+        removeUser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String str=ShopManagerTEXT.getText();
+                String words[]=str.split("-");
+                System.out.println(words[0]);
+                Double FEE=Double.parseDouble(words[4]);
+                System.out.println(FEE);
+                //ShopManager SM=new ShopManager(words[0],words[1],words[2],words[3],FEE,null);
+            }
+        });
+
+    }
     public void GUEST(){
 
         frame.setVisible(false);
@@ -239,6 +360,7 @@ public class GUI{
         removeUser.setBounds(390,450,100,25);
         panel.add(removeUser);
 
+<<<<<<< HEAD
 
         JButton adminInfo=new JButton("Display Personnel Info");
         adminInfo.setBounds(1700,5,200,40);
@@ -269,6 +391,9 @@ public class GUI{
         panel.add(personnel_setting);
 
         ImageIcon icon = new ImageIcon("src/Pictures/airportadminis.jpg");
+=======
+        ImageIcon icon = new ImageIcon("admin.jpg");
+>>>>>>> 61a8f4b6d6260e6e55949a6ccd5fbaf215d5e15a
         JLabel label = new JLabel(icon);
         label.setBounds(0, 0, 1920, 1080); // for example, you can use your own values
         panel.add(label);
@@ -286,6 +411,7 @@ public class GUI{
         });
 
     }
+<<<<<<< HEAD
 
     public void AirportAdministratorPersonnelInfo(){
 
@@ -525,6 +651,10 @@ public class GUI{
         AirportSystemStorage portStorage = new AirportSystemStorage();
         AirportAdmin portAdmin = new AirportAdmin(portAdminName,portAdminSurname,portAdminSSN,portAdminPassword,portStorage);
 
+=======
+    public GUI(){
+
+>>>>>>> 61a8f4b6d6260e6e55949a6ccd5fbaf215d5e15a
         frame.setSize(1920,1080);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);//set center
@@ -534,6 +664,7 @@ public class GUI{
         panel.setLayout(null);
         panel.setBackground(Main);
 
+<<<<<<< HEAD
         JLabel a=new JLabel("label");
         a.setText("WELCOME TO DATA AIRPORT");
         a.setForeground(Landing_COLOR);
@@ -544,6 +675,9 @@ public class GUI{
 
 
         Icon icon = new ImageIcon("src/Pictures/3.gif");
+=======
+        Icon icon = new ImageIcon("3.gif");
+>>>>>>> 61a8f4b6d6260e6e55949a6ccd5fbaf215d5e15a
         JLabel label = new JLabel(icon);
         label.setBounds(0, 200, 400, 200); // for example, you can use your own values
         panel.add(label);
@@ -554,12 +688,25 @@ public class GUI{
 
         frame.setVisible(true);
 
-        Login.addActionListener( e -> LOGIN());//go to login page
+        Login.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                LOGIN();
+            }
+        });//go to login page
 
         JButton Guest=new JButton("GUEST");
         Guest.setBounds(470,300,150,25);
         panel.add(Guest);
-        Guest.addActionListener(e -> GUEST());//go to guest page.
+        Guest.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                GUEST();
+
+            }
+        });//go to guest page.
 
         //logo mouse click event
         LogoMouseListener logoMouseListener = new LogoMouseListener(frame,panel);
