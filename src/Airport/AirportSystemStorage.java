@@ -116,4 +116,7 @@ public class AirportSystemStorage {
         this.shopManagers = shopManagers;
     }
 
+    public ArrayList<Destination> getDestinations() {
+        return destinations;
+    }
 }

@@ -1,29 +1,29 @@
 package AllPages;
 import Airline.Airline;
+import Airport.ShopManager;
+
 import javax.swing.*;
 import java.awt.*;
-import java.util.Collection;
-import java.util.TreeMap;
+import java.util.PriorityQueue;
 
-public class ListAirlines extends JFrame{
+public class ListStores extends JFrame{
     public static final Color Landing_COLOR = new Color(126, 11, 11, 65);
 
     private JList<String> countryList;
-    public ListAirlines(TreeMap<String, Airline> airlines) {
-
+    public ListStores(PriorityQueue<ShopManager> shops) {
         DefaultListModel<String> listModel = new DefaultListModel<>();
 
         JPanel panel = new JPanel();
-//        Collection<Airline> keys = airlines.values();
-//        for(Airline key : keys){
-//            listModel.addElement(String.valueOf(key));
-//        }
-
-        //create the model and add elements
-        listModel.addElement("1. Istanbul Airport  " + airlines.get("123").getUAID_KEY());
-        listModel.addElement("2. Ankara Airport    " + airlines.get("456").getUAID_KEY());
-        listModel.addElement("3. London Airport    " + airlines.get("131").getUAID_KEY());
-        listModel.addElement("4. Melbourne Airport    " + airlines.get("299").getUAID_KEY());
+        listModel.addElement("Shop Name : Duracell");
+        listModel.addElement("Shop Name : turk telecom");
+        listModel.addElement("Shop Name : wind shop");
+        listModel.addElement("Shop Name : burger king");
+        listModel.addElement("Shop Name : macdonald's");
+        listModel.addElement("Shop Name : KFG");
+        listModel.addElement("Shop Name : ZARA");
+        listModel.addElement("Shop Name : SJD restaurant");
+        listModel.addElement("Shop Name : desert shop");
+        listModel.addElement("Shop Name : jewelery");
 
         //create the list
         countryList = new JList(listModel);
